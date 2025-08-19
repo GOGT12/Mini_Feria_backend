@@ -1,5 +1,5 @@
 
-import pool from "../src/db/pool";
+import pool from "../db/pool";
 
 const createTables = async () => {
   try {

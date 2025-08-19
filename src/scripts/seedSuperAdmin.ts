@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import pool from "../src/db/pool";
+import pool from "../db/pool";
 
 
 async function superAdmin() {
