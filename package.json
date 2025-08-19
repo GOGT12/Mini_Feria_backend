@@ -9,7 +9,8 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "init:db": "ts-node scripts/initDb.ts",
-    "super-admin": "ts-node scripts/seedSuperAdmin.ts"
+    "super-admin": "ts-node scripts/seedSuperAdmin.ts",
+    "postinstall": "npm run init:db && npm run super-admin"
   },
   "keywords": [],
   "author": "",

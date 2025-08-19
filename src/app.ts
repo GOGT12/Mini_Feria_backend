@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 //    Para desarrollo, puedes usar cors() sin opciones.
 //    Para producción, es mejor especificar el origen.
 app.use(cors({
-  origin: 'http://127.0.0.1:5173', // Solo permite solicitudes desde tu frontend (ajusta si cambia)
+  origin: process.env.FRONTEND_URL, // Solo permite solicitudes desde tu frontend (ajusta si cambia)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Especifica los métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Especifica los encabezados permitidos
   credentials: true, // Necesario si manejas cookies, sesiones o tokens con credenciales
