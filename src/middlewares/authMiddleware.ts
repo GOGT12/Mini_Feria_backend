@@ -44,6 +44,9 @@ const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
       // 4. Guardar los datos del usuario decodificado en el objeto req
       // El 'user' aquí es el payload del JWT (id, username, email, role)
       req.user = user as Request['user']; // Casting a Request['user'] para TypeScript
+      if(!req.user){
+        return res.status(401).json({message: 'Unauthorized'});
+      }
       console.log('authenticateJWT: Token válido. Usuario:', req.user.username, 'Rol:', req.user.role);
       next(); // Continuar con la siguiente función (middleware o controlador)
     });
