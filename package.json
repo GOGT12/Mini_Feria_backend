@@ -8,8 +8,8 @@
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc",
     "start": "node dist/app.js",
-    "init:db": "ts-node scripts/initDb.ts",
-    "super-admin": "ts-node scripts/seedSuperAdmin.ts",
+    "init:db": "node dist/scripts/initDb.js",
+    "super-admin": "node dist/scripts/seedSuperAdmin.js",
     "postinstall": "npm run init:db && npm run super-admin"
   },
   "keywords": [],
