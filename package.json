@@ -7,10 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc",
-    "start": "node dist/app.js",
+    "start": "npm run init:db && npm run super-admin && node dist/app.js",
     "init:db": "node dist/scripts/initDb.js",
     "super-admin": "node dist/scripts/seedSuperAdmin.js",
-    "postinstall": "npm run init:db && npm run super-admin"
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",
