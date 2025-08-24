@@ -19,33 +19,14 @@ const PORT = process.env.PORT || 3000;
 //    Para desarrollo, puedes usar cors() sin opciones.
 //    Para producción, es mejor especificar el origen.
 app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      'https://mini-feria-fronted.vercel.app',
-      'http://localhost:5173',
-    ];
-    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'), false);
-    }
-  },
-  credentials: true, // Necesario si manejas cookies, sesiones o tokens con credenciales
+  origin: '*',
+  credentials: false, // Necesario si manejas cookies, sesiones o tokens con credenciales
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Especifica los métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Especifica los encabezados permitidos
 
 }));
 
-app.options('*', cors({
-  origin: function (origin, callback) {
-    if (!origin || origin.endsWith('.vercel.app')) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'), false);
-    }
-  },
-  credentials: true
-}));
+
 
 
 
