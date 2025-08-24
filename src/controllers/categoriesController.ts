@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import jwt from 'jsonwebtoken'
 import dbQueriesCategories from "../db/queries/categoriesQueries";
 import validation from "../utils/validation";
-import { error } from "console";
+
 
 
 

@@ -19,11 +19,35 @@ const PORT = process.env.PORT || 3000;
 //    Para desarrollo, puedes usar cors() sin opciones.
 //    Para producción, es mejor especificar el origen.
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Solo permite solicitudes desde tu frontend (ajusta si cambia)
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'https://mini-feria-fronted.vercel.app',
+      'http://localhost:5173',
+    ];
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'), false);
+    }
+  },
+  credentials: true, // Necesario si manejas cookies, sesiones o tokens con credenciales
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Especifica los métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Especifica los encabezados permitidos
-  credentials: true, // Necesario si manejas cookies, sesiones o tokens con credenciales
+
 }));
+
+app.options('*', cors({
+  origin: function (origin, callback) {
+    if (!origin || origin.endsWith('.vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'), false);
+    }
+  },
+  credentials: true
+}));
+
+
 
 // 2. Morgan: Para registro de solicitudes HTTP.
 app.use(morgan("dev")); // El formato 'dev' es genial para desarrollo.
@@ -45,5 +69,5 @@ app.use("/api/products", productsRouter)
 
 // Iniciar el servidor
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en ${PORT}`);
 });

@@ -8,7 +8,7 @@ const categoriesRouter: any = Router();
 categoriesRouter.get(
   "/get-categories",
   authenticateJWT,
-  authorizeRoles(['super_admin']),
+  authorizeRoles(['super_admin', 'admin']),
   categoriesController.getCategories,
 )
 
@@ -22,14 +22,14 @@ categoriesRouter.get(
 categoriesRouter.post(
   "/add-category",
   authenticateJWT,
-  authorizeRoles(['super_admin']),
+  authorizeRoles(['super_admin', 'admin']),
   categoriesController.addCategory,
 );
 
 categoriesRouter.delete(
   "/delete-category",
   authenticateJWT,
-  authorizeRoles(['super_admin']),
+  authorizeRoles(['super_admin', 'admin']),
   categoriesController.deleteCategory,
 )
 
